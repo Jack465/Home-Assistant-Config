@@ -1,0 +1,12 @@
+bins_status:
+  name: Bin Status
+  icon: mdi:trash-can-outline
+jack_wifi_connected:
+  name: Jack Wifi Connected Phone
+  icon: mdi:wifi
+lighttoggleswitchmorning:
+  name: Morning Routine Toggle Switch
+  icon: mdi:lightbulb
+lighttoggleswitchnight:
+  name: Night Routine Toggle Switch
+  icon: mdi:lightbulb

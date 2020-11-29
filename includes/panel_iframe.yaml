@@ -1,0 +1,9 @@
+bookstack:
+  title: Recipes
+  icon: mdi:book
+  url: http://192.168.0.50
+  
+nodered:
+  title: NodeRED
+  icon: mdi:source-fork
+  url: http://192.168.0.114:1880

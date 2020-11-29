@@ -1,0 +1,35 @@
+sensor.7_eleven_werrington_e10:
+  icon: mdi:fuel
+sensor.7_eleven_werrington_u91:
+  icon: mdi:fuel
+sensor.caltex_werrington_e10:
+  icon: mdi:fuel
+sensor.caltex_werrington_u91:
+  icon: mdi:fuel
+sensor.epson_xp_442_445_series_black_ink:
+  icon_color: black
+sensor.epson_xp_442_445_series_cyan_ink:
+  icon_color: rgb(0,255,255)
+sensor.epson_xp_442_445_series_magenta_ink:
+  icon_color: rgb(255,0,255)
+sensor.epson_xp_442_445_series_yellow_ink:
+  icon_color: yellow
+switch.mirabellagenio:
+  templates:   
+    icon_color: >
+      if (state == 'on') return 'rgb(251, 210, 41)'; else return 'rgb(68,115,158)';
+sensor.speedtest_ping:
+  icon: mdi:pulse
+  friendly_name: Ping
+sensor.speedtest_download:
+  friendly_name: Download
+  icon: mdi:arrow-down-bold
+sensor.speedtest_upload:
+  friendly_name: Upload
+  icon: mdi:arrow-up-bold
+switch.fishlight:
+  icon: mdi:lightbulb
+  templates:
+    icon_color: >
+      if (state == 'on') return 'rgb(251, 210, 41)';
+

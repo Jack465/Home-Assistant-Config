@@ -1,0 +1,42 @@
+- platform: filesize
+  file_paths:
+    - /home/homeassistant/.homeassistant/home-assistant_v2.db
+    - /home/homeassistant/.homeassistant/home-assistant.log
+- platform: dht
+  sensor: DHT11
+  name: Bedroom DHT
+  pin: 4
+  temperature_offset: 0
+  humidity_offset: 0
+  monitored_conditions:
+    - temperature
+    - humidity
+- platform: nsw_fuel_station
+  station_id: !secret fuelStationOne
+- platform: nsw_fuel_station
+  station_id: !secret fuelStationTwo
+- platform: template
+  sensors:
+    bins_out:
+      friendly_name: "Bin Location"
+      value_template: >-
+        {%- if is_state('input_boolean.bins_status','on') -%}
+          Outside
+        {%- else -%}
+          Inside
+        {%- endif -%}
+- platform: mqtt
+  state_topic: 'monitor/raspberrypi/jackphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Bedroom Monitor'
+- platform: waze_travel_time
+  origin: !secret wazeHome
+  destination: !secret wazeWork
+  region: AU
+  name: Home to Work
+- platform: waze_travel_time
+  origin: !secret wazeWork
+  destination: !secret wazeHome
+  region: AU
+  name: Work to Home

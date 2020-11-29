@@ -1,0 +1,35 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+homeassistant:
+  customize: !include includes/customize.yaml
+  customize_glob:
+    "*.*":
+      hide_attributes:
+        - templates
+  allowlist_external_dirs:
+    - /home/homeassistant/.homeassistant/  
+default_config:
+http: !include includes/http.yaml
+api:
+python_script:
+frontend:
+  themes: !include_dir_merge_named themes
+
+group: !include includes/groups.yaml
+automation: !include includes/automations.yaml
+script: !include includes/scripts.yaml
+scene: !include includes/scenes.yaml
+sensor: !include includes/sensors.yaml
+binary_sensor: !include includes/binary_sensors.yaml
+tts: !include includes/tts.yaml
+telegram_bot: !include includes/telegrambot.yaml
+notify: !include includes/notify.yaml
+speedtestdotnet: !include includes/speedtest.yaml
+geo_location: !include includes/geolocation.yaml
+panel_iframe: !include includes/panel_iframe.yaml
+input_boolean: !include includes/input_booleans.yaml
+device_tracker: !include includes/device_tracker.yaml
+google_assistant: !include includes/google_assistant.yaml
+influxdb: !include includes/influx.yaml
+
+mqtt: # dont even know if this is still needed, just leaving it to prevent breaking something.
+  broker: 192.168.0.114
