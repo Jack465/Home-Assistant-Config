@@ -4,3 +4,23 @@
       friendly_name: No one is home
       value_template: >
         {{ not is_state("person.jack_scott", "home") }}
+- platform: bayesian
+  prior: 0.5
+  name: 'Jack Presence at Home'
+  probability_threshold: 0.9
+  observations:
+    - entity_id: 'device_tracker.hostname'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.sm_g975f'
+      prob_given_true: 0.9
+      prob_given_false: 0.2
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'input_boolean.jack_wifi_connected'
+      prob_given_true: 1.0
+      prob_given_false: 0.0
+      platform: 'state'
+      to_state: 'on'

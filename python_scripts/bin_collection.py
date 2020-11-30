@@ -17,4 +17,3 @@ else:
         'friendly_name': "Bin Collection Type",
         'icon': 'mdi:delete'
     })
-
