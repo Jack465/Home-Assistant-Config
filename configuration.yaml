@@ -30,6 +30,7 @@ input_boolean: !include includes/input_booleans.yaml
 device_tracker: !include includes/device_tracker.yaml
 google_assistant: !include includes/google_assistant.yaml
 influxdb: !include includes/influx.yaml
+zone: !include includes/zones.yaml
 
 mqtt: # dont even know if this is still needed, just leaving it to prevent breaking something.
   broker: 192.168.0.114
