@@ -1,3 +1,8 @@
+- name: Home
+  latitude: !secret zonesLatitude
+  longitude: !secret zonesLongitude
+  radius: 150
+  icon: mdi:home
 - name: Fire Watch Zone #used for the NSWRFS integration
   latitude: !secret zonesLatitude
   longitude: !secret zonesLongitude
