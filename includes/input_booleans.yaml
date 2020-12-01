@@ -10,3 +10,6 @@ lighttoggleswitchmorning:
 lighttoggleswitchnight:
   name: Night Routine Toggle Switch
   icon: mdi:lightbulb
+jack_nfc_tag:
+  name: Jack Home NFC Tag Desk
+  icon: mdi:nfc

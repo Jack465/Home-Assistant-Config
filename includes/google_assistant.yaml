@@ -4,5 +4,6 @@ report_state: true
 exposed_domains:
   - switch
   - light
-  - sensor
   - input_boolean
+  - group
+  - scene 
