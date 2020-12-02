@@ -1,0 +1,2 @@
+- platform: microsoft
+  api_key: !secret microsoftAPI
