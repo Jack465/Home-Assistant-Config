@@ -1,0 +1,6 @@
+home:
+  ignored_zones:
+    - work 
+  devices:
+    - device_tracker.sm_g975f
+  tolerance: 50

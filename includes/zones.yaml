@@ -9,8 +9,8 @@
   radius: 50000
   icon: mdi:map-marker
   passive: true
-- name: 5 Minutes Away from Home
-  latitude: !secret zonesLatitude
-  longitude: !secret zonesLongitude
-  radius: 1000
-  icon: mdi:radius
+- name: Work
+  latitude: !secret workLat
+  longitude: !secret workLong
+  radius: 150
+  icon: mdi:briefcase

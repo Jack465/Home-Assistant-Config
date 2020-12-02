@@ -32,4 +32,5 @@ switch.fishlight:
   templates:
     icon_color: >
       if (state == 'on') return 'rgb(251, 210, 41)';
-
+light.wled:
+  friendly_name: Desk LED Strip
