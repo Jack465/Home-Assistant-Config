@@ -34,3 +34,5 @@ switch.fishlight:
       if (state == 'on') return 'rgb(251, 210, 41)';
 light.wled:
   friendly_name: Desk LED Strip
+switch.plugtwo:
+  friendly_name: Washing Machine

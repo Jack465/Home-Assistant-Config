@@ -12,3 +12,27 @@
   - service: notify.mobile_app_sm_g975f
     data_template:
       message: "The Fish Light has been switched {{ states.switch.fishlight.state }}"
+- id: 'light02'
+  alias: "Turn Lights off when Jack is away"
+  trigger:
+  - platform: state
+    entity_id: person.jack_scott
+    to: 'not_home'
+  condition: []
+  action:
+  - service: switch.turn_off
+    entity_id: switch.mirabellagenio
+  - service: light.turn_off
+    entity_id: light.wled
+- id: 'light03'
+  alias: "Turn Lights On when Jack is Home"
+  trigger:
+  - platform: state
+    entity_id: person.jack_scott
+    to: 'home'
+  condition: []
+  action:
+  - service: switch.turn_on
+    entity_id: switch.mirabellagenio
+  - service: light.turn_on
+    entity_id: light.wled

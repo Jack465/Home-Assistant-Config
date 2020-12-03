@@ -25,6 +25,60 @@
         {%- else -%}
           Inside
         {%- endif -%}
+    # Plug One - Dryer
+    plugone_amps:
+      friendly_name_template: "{{ states.switch.plugone.name}} Current"
+      value_template: '{{ states.switch.plugone.attributes["current_a"] | float }}'
+      unit_of_measurement: 'A'
+    plugone_watts:
+      friendly_name_template: "{{ states.switch.plugone.name}} Current Consumption"
+      value_template: '{{ states.switch.plugone.attributes["current_power_w"] | float }}'
+      unit_of_measurement: 'W'
+    plugone_total_kwh:
+      friendly_name_template: "{{ states.switch.plugone.name}} Total Consumption"
+      value_template: '{{ states.switch.plugone.attributes["total_energy_kwh"] | float }}'
+      unit_of_measurement: 'kWh'
+    plugone_volts:
+      friendly_name_template: "{{ states.switch.plugone.name}} Voltage"
+      value_template: '{{ states.switch.plugone.attributes["voltage"] | float }}'
+      unit_of_measurement: 'V'
+    plugone_kwh_today:
+      friendly_name_template: "{{ states.switch.plugone.name}} Today's Consumption"
+      value_template: '{{ states.switch.plugone.attributes["today_energy_kwh"] | float }}'
+      unit_of_measurement: 'kWh'
+    plugone_cost_today:
+      friendly_name: "Dryer Cost Today"
+      value_template: "$ {{ states('sensor.plugone_kwh_today') | float * 0.28436 | round(1) }}"
+    plugone_cost_alltime:
+      friendly_name: "Dryer Cost All Time"
+      value_template: "$ {{ states('sensor.plugone_total_kwh') | float * 0.28436 | round(1) }}"
+    # TP Link 2 - Washing Machine
+    plugtwo_amps:
+      friendly_name_template: "{{ states.switch.plugtwo.name}} Current"
+      value_template: '{{ states.switch.plugtwo.attributes["current_a"] | float }}'
+      unit_of_measurement: 'A'
+    plugtwo_watts:
+      friendly_name_template: "{{ states.switch.plugtwo.name}} Current Consumption"
+      value_template: '{{ states.switch.plugtwo.attributes["current_power_w"] | float }}'
+      unit_of_measurement: 'W'
+    plugtwo_total_kwh:
+      friendly_name_template: "{{ states.switch.plugtwo.name}} Total Consumption"
+      value_template: '{{ states.switch.plugtwo.attributes["total_energy_kwh"] | float }}'
+      unit_of_measurement: 'kWh'
+    plugtwo_volts:
+      friendly_name_template: "{{ states.switch.plugtwo.name}} Voltage"
+      value_template: '{{ states.switch.plugtwo.attributes["voltage"] | float }}'
+      unit_of_measurement: 'V'
+    plugtwo_kwh_today:
+      friendly_name_template: "{{ states.switch.plugtwo.name}} Today's Consumption"
+      value_template: '{{ states.switch.plugtwo.attributes["today_energy_kwh"] | float }}'
+      unit_of_measurement: 'kWh'
+    plugtwo_cost_today:
+      friendly_name: "Washing Machine Cost Today"
+      value_template: "$ {{ states('sensor.plugtwo_kwh_today') | float * 0.28436 | round(1) }}"
+    plugtwo_cost_alltime:
+      friendly_name: "Washing Machine Cost All Time"
+      value_template: "$ {{ states('sensor.plugtwo_total_kwh') | float * 0.28436 | round(1) }}"
 - platform: mqtt
   state_topic: 'monitor/raspberrypi/jackphone'
   value_template: '{{ value_json.confidence }}'

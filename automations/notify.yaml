@@ -30,3 +30,64 @@
     data:
       title: "A new update has been released"
       message: "A new Home Assistant Update has been released, review the release documentation, and then install it."
+- id: 'notify03'
+  initial_state: false
+  alias: "Notification when Dryer Cycle is done"
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugone_watts
+    below: 10
+    for: "00:00:15"
+  condition: []
+  action: 
+  - service: notify.mobile_app_sm_g975f
+    data: 
+      title: "The Dryer Cycle has Completed"
+      message: "The dryer cycle has completed, you can now empty it."
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.googlehome1371
+      media_content_id: "http://192.168.0.114:8123/local/audio/dryer.mp3"
+      media_content_type: music
+
+- id: 'notify04'
+  initial_state: false
+  alias: "Notification when Washer Cycle is done"
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugtwo_watts
+    below: 1
+    for: "00:00:15"
+  condition: []
+  action: 
+  - service: notify.mobile_app_sm_g975f
+    data: 
+      title: "The Washing Machine Cycle has Completed"
+      message: "The washing machine cycle has completed, you can now empty it."
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.googlehome1371
+      media_content_id: "http://192.168.0.114:8123/local/audio/washer.mp3"
+      media_content_type: music
+
+- id: 'notify03-preamble'
+  alias: "Activate Dryer Automation"
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugone_watts
+    above: 150
+  condition: []
+  action:
+  - service: automation.turn_on
+    entity_id: automation.notification_when_dryer_cycle_is_done
+
+- id: 'notify04-preamble'
+  alias: "Activate Washer Automation"
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugtwo_watts
+    above: 150
+  condition: []
+  action:
+  - service: automation.turn_on
+    entity_id: automation.notification_when_washer_cycle_is_done
