@@ -48,10 +48,10 @@
       unit_of_measurement: 'kWh'
     plugone_cost_today:
       friendly_name: "Dryer Cost Today"
-      value_template: "$ {{ states('sensor.plugone_kwh_today') | float * 0.28436 | round(1) }}"
+      value_template: "${{ (states('sensor.plugone_kwh_today') | float * 0.28436) | round(3) }}"
     plugone_cost_alltime:
       friendly_name: "Dryer Cost All Time"
-      value_template: "$ {{ states('sensor.plugone_total_kwh') | float * 0.28436 | round(1) }}"
+      value_template: "${{ (states('sensor.plugone_total_kwh') | float * 0.28436) | round(3) }}"
     # TP Link 2 - Washing Machine
     plugtwo_amps:
       friendly_name_template: "{{ states.switch.plugtwo.name}} Current"
@@ -75,10 +75,10 @@
       unit_of_measurement: 'kWh'
     plugtwo_cost_today:
       friendly_name: "Washing Machine Cost Today"
-      value_template: "$ {{ states('sensor.plugtwo_kwh_today') | float * 0.28436 | round(1) }}"
+      value_template: "${{ (states('sensor.plugtwo_kwh_today') | float * 0.28436) | round(3) }}"
     plugtwo_cost_alltime:
       friendly_name: "Washing Machine Cost All Time"
-      value_template: "$ {{ states('sensor.plugtwo_total_kwh') | float * 0.28436 | round(1) }}"
+      value_template: "${{ (states('sensor.plugtwo_total_kwh') | float * 0.28436) | round(3) }}"
 - platform: mqtt
   state_topic: 'monitor/raspberrypi/jackphone'
   value_template: '{{ value_json.confidence }}'
@@ -94,3 +94,12 @@
   destination: !secret wazeHome
   region: AU
   name: Work to Home
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'

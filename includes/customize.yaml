@@ -2,7 +2,7 @@ sensor.7_eleven_werrington_e10:
   icon: mdi:fuel
 sensor.7_eleven_werrington_u91:
   icon: mdi:fuel
-sensor.caltex_werrington_e10:
+sensor.7_eleven_st_marys_e10:
   icon: mdi:fuel
 sensor.caltex_werrington_u91:
   icon: mdi:fuel
@@ -36,3 +36,5 @@ light.wled:
   friendly_name: Desk LED Strip
 switch.plugtwo:
   friendly_name: Washing Machine
+binary_sensor.0x00158d00034f4d50_contact:
+  device_class: window

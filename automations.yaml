@@ -1,0 +1,183 @@
+- id: '1610359092128'
+  alias: Toggle Fish Light
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  - platform: time
+    at: '20:00:00'
+  condition: []
+  action:
+  - service: switch.toggle
+    data: {}
+    entity_id: switch.fishlight
+  mode: single
+- id: '1610359494267'
+  alias: Turn Lights on when Jack Arrives
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.jack_scott
+    to: home
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.mirabellagenio
+  - service: light.turn_on
+    data: {}
+    entity_id: light.wled
+  mode: single
+- id: '1610359558236'
+  alias: Turtle Light 7AM 8PM
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00:00
+  - platform: time
+    at: '20:00:00'
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.0x000d6f000f17162e
+  mode: single
+- id: '1610359608155'
+  alias: Turn Lights Off when Jack Leaves
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: person.jack_scott
+    to: not_home
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.mirabellagenio
+  - service: light.turn_off
+    data: {}
+    entity_id: light.wled
+  mode: single
+- id: '1610359965728'
+  alias: Printer Ink Notification
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.epson_xp_442_445_series_black_ink
+    below: '10'
+  - platform: numeric_state
+    entity_id: sensor.epson_xp_442_445_series_yellow_ink
+    below: '10'
+  - platform: numeric_state
+    entity_id: sensor.epson_xp_442_445_series_cyan_ink
+    below: '10'
+  - platform: numeric_state
+    entity_id: sensor.epson_xp_442_445_series_magenta_ink
+    below: '10'
+  condition: []
+  action:
+  - service: notify.telegram
+    data_template:
+      message: Colour {{ trigger.from_state.attributes.friendly_name }} is low
+  mode: single
+- id: '1610360133942'
+  alias: Dryer Cycle Done
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugone_watts
+    below: '10'
+    for: 00:00:10
+  condition:
+  - condition: time
+    before: '19:00:00'
+    after: 05:00:00
+  action:
+  - service: notify.mobile_app_sm_g975f
+    data_template:
+      title: The dryer cycle has finished
+      message: Completed at {{ states('sensor.time') }}
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.googlehome1371
+      media_content_id: http://192.168.0.114:8123/local/audio/dryer.mp3
+      media_content_type: music
+  mode: single
+- id: '1610360219273'
+  alias: Washing Machine Cycle Done
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugtwo_watts
+    below: '1'
+    for: 00:00:10
+  condition:
+  - condition: time
+    before: '19:00:00'
+    after: 05:00:00
+  action:
+  - service: notify.mobile_app_sm_g975f
+    data_template:
+      title: The washing machine cycle has finished
+      message: Completed at {{ states('sensor.time') }}
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.googlehome1371
+      media_content_id: http://192.168.0.114:8123/local/audio/washer.mp3
+      media_content_type: music
+  mode: single
+- id: '1610360297291'
+  alias: Activate Washer Automation
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugtwo_watts
+    above: '150'
+  condition: []
+  action:
+  - service: automation.turn_on
+    data: {}
+    entity_id: automation.washing_machine_cycle_done
+  mode: single
+- id: '1610360335080'
+  alias: Activate Dryer Automation
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.plugone_watts
+    above: '150'
+  condition: []
+  action:
+  - service: automation.turn_on
+    data: {}
+    entity_id: automation.dryer_cycle_done
+  mode: single
+- id: '1610360387846'
+  alias: Update Python Script Countdowns
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:01:00
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: python_script.bin_collection
+    data: {}
+  - service: python_script.registration_countdown
+    data: {}
+  mode: single
+- id: '1610360899400'
+  alias: Telegram Digest
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /rain
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data_template:
+      message: ☔ Chance of Rain = {{ states('sensor.werrington_rain_chance_0') }}%
+  mode: single
