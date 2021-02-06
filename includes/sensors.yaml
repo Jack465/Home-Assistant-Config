@@ -103,3 +103,10 @@
     - 'time_date'
     - 'time_utc'
     - 'beat'
+- platform: history_stats
+  name: Time at Work this week
+  entity_id: person.jack_scott
+  state: "Work"
+  type: time
+  start: "{{ as_timestamp( now().replace(hour=0, minute=0, second=0) ) - now().weekday() * 86400 }}"
+  end: "{{ now() }}"

@@ -11,6 +11,7 @@ default_config:
 http: !include includes/http.yaml
 api:
 python_script:
+recorder: !include includes/recorder.yaml
 frontend:
   themes: !include_dir_merge_named themes
 
@@ -24,7 +25,7 @@ binary_sensor: !include includes/binary_sensors.yaml
 tts: !include includes/tts.yaml
 telegram_bot: !include includes/telegrambot.yaml
 notify: !include includes/notify.yaml
-speedtestdotnet: !include includes/speedtest.yaml
+#speedtestdotnet: !include includes/speedtest.yaml
 geo_location: !include includes/geolocation.yaml
 panel_iframe: !include includes/panel_iframe.yaml
 input_boolean: !include includes/input_booleans.yaml
@@ -33,6 +34,7 @@ google_assistant: !include includes/google_assistant.yaml
 influxdb: !include includes/influx.yaml
 zone: !include includes/zones.yaml
 proximity: !include includes/proximity.yaml
+spotify: !include includes/spotify.yaml
 
 mqtt: # dont even know if this is still needed, just leaving it to prevent breaking something.
   discovery: true

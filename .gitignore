@@ -164,4 +164,4 @@ home-assistant_v2.db
 home-assistant.log
 tts/
 themes/
-
+includes/recorder.yaml

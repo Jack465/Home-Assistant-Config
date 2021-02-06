@@ -1,7 +1,7 @@
-server_id: 2629
-scan_interval:
-  hours: 3
-monitored_conditions:
-  - ping
-  - download
-  - upload
+#server_id: 2629
+#scan_interval:
+#  hours: 3
+#monitored_conditions:
+#  - ping
+#  - download
+#  - upload

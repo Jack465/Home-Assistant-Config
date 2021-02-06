@@ -181,3 +181,29 @@
     data_template:
       message: ☔ Chance of Rain = {{ states('sensor.werrington_rain_chance_0') }}%
   mode: single
+- id: '1611911852841'
+  alias: Notify when there is a new update available
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.telegram
+    data:
+      message: There is a new Home Assistant update available - review the release
+        documentation and update accordingly.
+  mode: single
+- id: '1612512846687'
+  alias: stepper motor speed temp
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.stepper_control
+  condition: []
+  action:
+  - service: esphome.stepper1
+    data_template:
+      target: '{{ trigger.to_state.state | int }}'
+  mode: single

@@ -14,3 +14,8 @@
   longitude: !secret workLong
   radius: 150
   icon: mdi:briefcase
+- name: Uni
+  latitude: !secret uniLat
+  longitude: !secret uniLong
+  radius: 600
+  icon: mdi:school
