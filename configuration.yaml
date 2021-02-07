@@ -1,10 +1,10 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 homeassistant:
   customize: !include includes/customize.yaml
-  customize_glob:
-    "*.*":
-      hide_attributes:
-        - templates
+  # customize_glob:
+  #   "*.*":
+  #     hide_attributes:
+  #       - templates
   allowlist_external_dirs:
     - /home/homeassistant/.homeassistant/  
 default_config:
