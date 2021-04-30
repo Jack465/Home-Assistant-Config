@@ -1,0 +1,6 @@
+- platform: command_line
+  switches:
+    led_fx:
+      command_on: '/bin/bash /home/homeassistant/.homeassistant/fxledON.sh'
+      command_off: '/bin/bash /home/homeassistant/.homeassistant/fxledOFF.sh'
+      friendly_name: "WLED Audio Reaction"

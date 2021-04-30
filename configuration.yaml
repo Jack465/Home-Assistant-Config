@@ -35,7 +35,7 @@ influxdb: !include includes/influx.yaml
 zone: !include includes/zones.yaml
 proximity: !include includes/proximity.yaml
 spotify: !include includes/spotify.yaml
-
+switch: !include includes/switch.yaml
 mqtt: # dont even know if this is still needed, just leaving it to prevent breaking something.
   discovery: true
   broker: 192.168.0.114
@@ -45,3 +45,4 @@ mqtt: # dont even know if this is still needed, just leaving it to prevent break
   will_message:
     topic: 'hass/status'
     payload: 'offline'
+camera: !include includes/camera.yaml

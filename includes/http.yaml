@@ -1,4 +1,5 @@
-use_x_forwarded_for: true
-trusted_proxies: 192.168.0.161
+#use_x_forwarded_for: true
+#trusted_proxies: 192.168.0.161
+#server_port: 8443
 ip_ban_enabled: true
 login_attempts_threshold: 3

@@ -3,14 +3,17 @@
   description: ''
   trigger:
   - platform: time
-    at: 06:00:00
+    at: 07:00:00
   - platform: time
-    at: '20:00:00'
+    at: '19:00:00'
   condition: []
   action:
   - service: switch.toggle
     data: {}
     entity_id: switch.fishlight
+  - service: switch.toggle
+    data: {}
+    entity_id: switch.0x000d6f000f1714be
   mode: single
 - id: '1610359494267'
   alias: Turn Lights on when Jack Arrives
@@ -35,10 +38,10 @@
   - platform: time
     at: 07:00:00
   - platform: time
-    at: '20:00:00'
+    at: '19:00:00'
   condition: []
   action:
-  - service: switch.turn_on
+  - service: switch.toggle
     data: {}
     entity_id: switch.0x000d6f000f17162e
   mode: single

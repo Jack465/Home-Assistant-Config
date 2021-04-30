@@ -165,3 +165,4 @@ home-assistant.log
 tts/
 themes/
 includes/recorder.yaml
+includes/camera.yaml

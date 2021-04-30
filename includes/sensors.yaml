@@ -146,28 +146,11 @@
       friendly_name_template: '{{ states.sensor.up_balances.attributes["data"][2]["attributes"]["displayName"] }} clean'
       value_template: '${{ states.sensor.up_balances.attributes["data"][2]["attributes"]["balance"]["value"] }}'
 
-    car_repairs_balance:
-      friendly_name_template: '{{ states.sensor.up_balances.attributes["data"][3]["attributes"]["displayName"] }}'
-      value_template: '{{ states.sensor.up_balances.attributes["data"][3]["attributes"]["balance"]["value"] }}'
-      unit_of_measurement: '$'
-    car_repairs_formatted:
-      friendly_name_template: '{{ states.sensor.up_balances.attributes["data"][3]["attributes"]["displayName"] }} clean'
-      value_template: '${{ states.sensor.up_balances.attributes["data"][3]["attributes"]["balance"]["value"] }}'
-
-    tyres_balance:
-      friendly_name_template: '{{ states.sensor.up_balances.attributes["data"][4]["attributes"]["displayName"] }}'
-      value_template: '{{ states.sensor.up_balances.attributes["data"][4]["attributes"]["balance"]["value"] }}'
-      unit_of_measurement: '$'
-    tyres_formatted:
-      friendly_name_template: '{{ states.sensor.up_balances.attributes["data"][4]["attributes"]["displayName"] }} clean'
-      value_template: '${{ states.sensor.up_balances.attributes["data"][4]["attributes"]["balance"]["value"] }}'
-
 # Calculate total balance
-# again, ez pz to add to this with further accounts
 - platform: template
   sensors:
     total_balance:
-      value_template: '{{ ((states.sensor.spending_balance.state | float) + (states.sensor.savings_balance.state | float) + (states.sensor.car_registration_balance.state | float) + (states.sensor.car_repairs_balance.state | float) + (states.sensor.tyres_balance.state | float))  | round(2) }}'
+      value_template: '{{ ((states.sensor.spending_balance.state | float) + (states.sensor.savings_balance.state | float) + (states.sensor.car_registration_balance.state | float)) | round(2) }}'
       friendly_name: Total Balance
       unit_of_measurement: '$'
     total_balance_formatted:
@@ -353,3 +336,11 @@
             {{ parsed[4]["relationships"]["parentCategory"]['data']['id'] }}
           {% endif %}
       unit_of_measurement: '$'
+
+- platform: sql
+  db_url: !secret DBURLSTRING
+  queries:
+    - name: DB Size
+      query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 /1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+      column: value
+      unit_of_measurement: Mb
